@@ -41,3 +41,12 @@ exports.getTasksByEmployee = async (req, res) => {
   );
   res.json(rows);
 };
+
+exports.getSubmissionsByTask = async (req, res) => {
+  const { task_id } = req.query;
+  const [rows] = await pool.execute(
+    "SELECT * FROM task_submissions WHERE task_id = ?",
+    [task_id]
+  );
+  res.json(rows);
+};
